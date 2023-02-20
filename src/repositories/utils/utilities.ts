@@ -1,4 +1,3 @@
-
 import {
     APP_CONTENTFUL_ACCESS_TOKEN,
     APP_CONTENTFUL_ENVIRONMENT,
@@ -6,6 +5,8 @@ import {
     CONTENT_URL,
     node_env
 } from "./graphQLfetch";
+import {ContentTypes, NavigationItem} from "../Navigation/types";
+import {getNavigationJson} from "../Navigation/request";
 
 export function createAnchorLinkFromTitle(link:string) :string
 {
@@ -40,4 +41,19 @@ export function HandleErrors(result:any) {
         console.log("system environment:" + node_env);
         console.log("url:" + CONTENT_URL);
     }
+}
+
+export async function flattenNavigationRoute(
+    id: string
+): Promise<NavigationItem[]> {
+
+    let dataFetched = await getNavigationJson(id);
+    let childIds: string[] = dataFetched
+        .filter((x) => x.__typename == ContentTypes.NavigationGroup)
+        .map((x) => x.sys?.id ?? "INVALID")
+        .filter((x) => x != "INVALID");
+    for (const childId of childIds) {
+        dataFetched = dataFetched.concat(await flattenNavigationRoute(childId));
+    }
+    return dataFetched;
 }

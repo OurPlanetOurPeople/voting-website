@@ -5,9 +5,10 @@ import {
     APP_CONTENTFUL_ENVIRONMENT,
     APP_CONTENTFUL_SPACE_ID, node_env
 } from "../utils/graphQLfetch";
+import {HandleErrors} from "../utils/utilities";
 
 export const mapNavData = (root: QueryResult) => {
-
+    HandleErrors(root);
     
   let validNavItems: NavigationItem[] = [];
   root.data.navigationGroup.navigationItemCollection.items.map(
@@ -20,6 +21,6 @@ export const mapNavData = (root: QueryResult) => {
         validNavItems.push(navItem);
     }
   );
-
+    
   return validNavItems;
 };

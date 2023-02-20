@@ -3,6 +3,7 @@
 //graphqlplayground
 //2EASI81WCZEAsg9bRP370U
 import {DEBUG_QUERY, getPreview} from "../utils/preview";
+import {QueryBlocks} from "../Common/query";
 
 function buildNavigationGroup(levels:number):string
 {
@@ -12,31 +13,16 @@ function buildNavigationGroup(levels:number):string
         
         
         items {
-          __typename
-          ... on VideoPage {
-            title
-            slug
-            video{ytembedUrl,autoPlay,title}
-          }
-          ... on BlogPost {
-            title
-            slug
-          }
+          ${QueryBlocks.BasicNavigationItems}
           ... on ExternalLink {
             title
             url
-          }
+          } 
           ... on NavigationGroup {
             title            
             sys{id}            
              ${buildNavigationGroup(levels)}
              hideInHeader
-          }
-       
-          ... on VotingPage {
-            title
-            introVideo
-            postVoteVideo
           }
         }
       }`;
@@ -46,18 +32,16 @@ export const navigationGroup = buildNavigationGroup(3)
 
 export function generateNavQuery(id: string) {
 
-  const isPreview = getPreview();
-  const query =  `
+    const isPreview = getPreview();
+    const query =  `
   query findNavById{
   navigationGroup(id: "${id}" preview:${isPreview}) {
  
       ${navigationGroup}
     }
-  }
+  }`;
+    
+    if(process.env.NODE_ENV == "development" && DEBUG_QUERY) console.log(query);
 
-
-`;
-  if(process.env.NODE_ENV == "development" && DEBUG_QUERY) console.log(query);
-  
-  return query;
+    return query;
 }

@@ -1,6 +1,6 @@
 import {getNavigationJson} from "../repositories/Navigation/request";
 import React, {useEffect, useState} from "react";
-import {NavigationItem, NavTypes} from "../repositories/Navigation/types";
+import {NavigationItem, ContentTypes} from "../repositories/Navigation/types";
 import {Link} from "react-router-dom";
 import {DynamicNavDropDown, TDynamicNav} from "./DynamicNav";
 
@@ -22,7 +22,7 @@ export const DynamicNavList = (props: TDynamicNav) => {
       {data &&
         data.map((navItem, index) => {
           switch (navItem.__typename) {
-            case NavTypes.ExternalLink:
+            case ContentTypes.ExternalLink:
               return (
                 <a
                   key={index}
@@ -33,20 +33,20 @@ export const DynamicNavList = (props: TDynamicNav) => {
                   {navItem.title}
                 </a>
               );
-            case NavTypes.VotingPage:
+            case ContentTypes.VotingPage:
               return (
                 <Link key={index} to={navItem.slug ?? ""} className="nav-link">
                   {"Vote"}
                 </Link>
               );
-            case NavTypes.VideoPage:
-            case NavTypes.BlogPost:
+            case ContentTypes.VideoPage:
+            case ContentTypes.BlogPost:
               return (
                 <Link key={index} to={navItem.slug ?? ""} className="nav-link">
                   {navItem.title}
                 </Link>
               );
-            case NavTypes.NavigationGroup:
+            case ContentTypes.NavigationGroup:
               return (
                   navItem.hideInHeader ? null :
                       <DynamicNavDropDown

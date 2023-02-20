@@ -4,9 +4,8 @@ import Container from "react-bootstrap/Container";
 import { Link, Outlet } from "react-router-dom";
 import "./Layout.scss";
 import { DynamicNav } from "../components/DynamicNav";
-import { footerComponentId, headerComponentId } from "../App";
+import { footerComponentId, headerComponentId } from "../Routing";
 import {DynamicFooter} from "../components/DynamicFooter";
-
 
 const Layout = () => {
   return (

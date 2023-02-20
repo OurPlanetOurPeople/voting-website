@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { NavigationItem } from "../repositories/Navigation/types";
-import { getNavigationJson } from "../repositories/Navigation/request";
+
 import { Link } from "react-router-dom";
-import { flattenNavigationRoute } from "../App";
 import {DEBUG_QUERY} from "../repositories/utils/preview";
+import {flattenNavigationRoute} from "../repositories/utils/utilities";
 
 export const DynamicFooter = ({ id }) => {
   const [links, setLinks] = useState([{ link: "privacy", title: "privacy" }]);
 
-  async function fetchData() {
+  async function fetchData() {  
     let slugs = await flattenNavigationRoute(id);
     let sentLinks = slugs.map((x) => ({ link: x.slug, title: x.title }));
     setLinks(sentLinks);

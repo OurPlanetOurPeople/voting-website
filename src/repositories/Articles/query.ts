@@ -4,6 +4,7 @@
 
 import {DEBUG_QUERY, getPreview} from "../utils/preview";
 import {navigationGroup} from "../Navigation/query";
+import {QueryBlocks} from "../Common/query";
 
 export function generatePostQuery(slug: string) {
 
@@ -30,8 +31,7 @@ export function generatePostQuery(slug: string) {
                 }
                 __typename
                 ... on BlogPost {
-                  title
-                  slug
+                  ${QueryBlocks.BlogPost}
                 }
               }
               block {
@@ -41,8 +41,7 @@ export function generatePostQuery(slug: string) {
                 __typename
             
                 ... on  BlogPost{                  
-                  slug
-                  title
+                  ${QueryBlocks.BlogPost}
                 }
           
                  ... on  GenericImage{
@@ -83,7 +82,7 @@ export function generatePostQuery(slug: string) {
     }
   }
 `;
- /* if(process.env.NODE_ENV == "development" && DEBUG_QUERY) */console.log(query);
+  if(process.env.NODE_ENV == "development" && DEBUG_QUERY) console.log(query);
  
   return query;
 }

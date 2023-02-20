@@ -1,9 +1,9 @@
 ﻿import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
-import {createAnchorLinkFromTitle, extractYoutubeVideoUrl} from "../utils/utilities";
+import {createAnchorLinkFromTitle} from "../utils/utilities";
 import {HubCollection} from "../../components/HubCollection";
 import {VideoEmbed} from "../../components/VideoEmbed";
-
+import {AssetTypes, ContentTypes} from "../Navigation/types";
 
 
 function renderOptions(links) {
@@ -51,11 +51,11 @@ function renderOptions(links) {
         // find the entry in the entryMap by ID
         const entry = entryBlockMap.get(node.data.target.sys.id);        
 
-        if(entry.__typename === "NavigationGroup")
+        if(entry.__typename === ContentTypes.NavigationGroup)
         {
           return <HubCollection items={entry.navigationItemCollection.items}></HubCollection>
         }
-        if (entry.__typename === "BlogPost" || entry.__typename === "VideoPage") {
+        if (entry.__typename === ContentTypes.BlogPost || entry.__typename === ContentTypes.VideoPage) {
           return (
               
                   <a href={entry.slug} className={"card"}>                    
@@ -66,11 +66,11 @@ function renderOptions(links) {
           );
         }
        
-        if (entry.__typename === "YoutubeVideoEmbed") {
+        if (entry.__typename === AssetTypes.YoutubeVideoEmbed) {
           // take the video url and extract the video id so we can clean it up       
           return <VideoEmbed url={entry.ytembedUrl} title={entry.title} autoplay={entry.autoPlay}></VideoEmbed>
         }
-        if (entry.__typename === "GenericImage") {
+        if (entry.__typename === AssetTypes.GenericImage) {
           return <img src={entry.image.url} alt={entry.title} />;
         }
       },
@@ -79,17 +79,15 @@ function renderOptions(links) {
         const asset = assetMap.get(node.data.target.sys.id);
         console.log("Asset found: " );
         console.log(asset);
+        // render the asset accordingly     
         if(asset.url.endsWith("pdf"))
         {
-
           return <a href={asset.url}>See PDF: {asset.title}</a>
         }
         else
         {
           return <img src={asset.url} title={asset.title}></img>
-        }
-        // render the asset accordingly
-        
+        }          
           
       },
     },
