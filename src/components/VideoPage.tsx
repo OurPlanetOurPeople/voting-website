@@ -21,7 +21,7 @@ export const VideoPage = (props: TArticlePage) => {
 
 
   const [data, setData] = useState<TVideoPage>({
-    header: "...video", videoTitle: "UnknownVideo", videoUrl: "", autoPlay:false
+    header: "", videoTitle: "UnknownVideo", videoUrl: "", autoPlay:false
   });
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const VideoPage = (props: TArticlePage) => {
 
   return (
     <>   
-      <h1>{data.header}</h1>
+      <h1>{data.header}</h1> 
       <div className={"videoIframe"}>        
         <iframe
             className="video"

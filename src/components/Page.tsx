@@ -22,7 +22,7 @@ export const ArticlePage = (props: TArticlePage) => {
   }, [slug])
   
   const [data, setData] = useState<TPage>({
-    header: "...",
+    header: "",
     richText: null,
   });
   
