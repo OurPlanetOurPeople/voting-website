@@ -5,8 +5,9 @@ import {getVideoPageJson} from "../repositories/VideoPage/request";
 import {TArticlePage} from "../repositories/Common/types";
 import {Video} from "react-datocms";
 import {TVideoProps} from "../components/VideoControl";
-import {TReferenceProps} from "../components/VideoReferenceControl";
+import {TReference, TReferenceProps} from "../components/VideoReferenceControl";
 import {VideoWithReference} from "./VideoWithReference";
+import {getReferences} from "../repositories/References/request";
 
 export interface TVideoPage {
     mainVideo: { id: string, video:{video: Video | undefined} } | undefined;
@@ -23,6 +24,8 @@ function getLastSlugPart(slug: string, separator: string = '/'): string | undefi
     const parts = slug.split(separator);
     return parts.pop();
 }
+
+
 
 export const VideoPage = (props: TArticlePage) => {
     let {slug, locale} = props;
@@ -54,7 +57,7 @@ export const VideoPage = (props: TArticlePage) => {
             <h1>{data.header}</h1>  
             {data.introText ? <p className="introText">{data.introText}</p> : null}
 
-            <VideoWithReference locale={locale} fullScreenOnClick={false} datoVideo={data?.mainVideo?.video?.video ?? undefined} pageTitle={props.title}
+            <VideoWithReference currentTimeStamp={0} references={getReferences(data.mainVideo?.id)} locale={locale} fullScreenOnClick={false} datoVideo={data?.mainVideo?.video?.video ?? undefined} pageTitle={props.title}
                                 videoTitle={data.videoTitle} videoThumbnail={data.videoThumbnail} ></VideoWithReference>
         </>
     );

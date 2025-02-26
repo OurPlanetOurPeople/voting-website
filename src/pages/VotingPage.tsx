@@ -2,23 +2,14 @@
 import {TQuestionBlock} from "../repositories/Navigation/types";
 import React, {useCallback, useEffect, useState} from "react";
 import {Video} from "react-datocms/dist/types/VideoPlayer";
-
 import { StructuredTextDocument} from "react-datocms";
-
 import {useSearchParams} from "react-router-dom";
 import {TVideoThumbnail} from "../repositories/VotingPage/types";
-import VotingPageOriginal from "./VotingPageVariants/VotingPageOriginal";
-import {VariantPopup} from "./VotingPageVariants/VariantPopup";
-
-import {VotingPageOption2} from "./VotingPageVariants/VotingPageOption2";
 import {getVotingPageJson} from "../repositories/VotingPage/request";
 import {Choice} from "../models";
 import {v4 as generateGuid} from "uuid";
-import {VotingPageOptionChris} from "./VotingPageVariants/VotingPageOptionChris";
-import {VotingPageOption1} from "./VotingPageVariants/VotingPageOption1";
-import {VotingPageOption3} from "./VotingPageVariants/VotingPageOption3";
-import {VotingPageOption5} from "./VotingPageVariants/VotingPageOption5";
 import { VotingPageMainJourney } from "./VotingPageVariants/VotingPageMainJourney";
+import {TReference} from "../components/VideoReferenceControl";
 
 
 export const localStorageVotingIdKey = "voterId";
@@ -74,6 +65,12 @@ export interface TVotingQueryProps
     locale:string
     id:string
 }
+
+
+
+
+
+
 const VotingPage = (queryProps: TVotingQueryProps) => {
 
     const [searchParams, setSearchParams] = useSearchParams();

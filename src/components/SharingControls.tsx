@@ -21,7 +21,6 @@ export interface ISharingControls {
 }
 
 export const SharingControls = ({className, voted, shareHeading, shareButtonText,mainQuestionText}: ISharingControls) => {
-
     const [linkAdded, setLinkAdded] = useState(false);
     
     useEffect(() => {
@@ -43,10 +42,8 @@ export const SharingControls = ({className, voted, shareHeading, shareButtonText
         });
         setLinkAdded(true);
     })
-    function record(text: string) {
 
-
-    }
+    function record(text: string) {}
 
     let twitterShareText = "";
 
@@ -57,56 +54,40 @@ export const SharingControls = ({className, voted, shareHeading, shareButtonText
     }
 
     const emailSubject = twitterShareText;
-//className={"verticalFrameCentre"}
-    return (<>
-        
-        <Row className={"verticalFrameCentre justify-content-center "} style={{paddingTop:"15%"}}> <h2>{shareHeading}</h2> </Row>
-        <Row >
-            
-            
+    return (
+        <>
+            <Row className={"verticalFrameCentre justify-content-center "}>
+                <h2>{shareHeading}</h2>
+            </Row>
 
-            <Col className={"squashToRow  sharingControls "}>
-                <div className={"verticalFrameCentre"}>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//ourplanetourpeople.com" target="_blank"
-               rel="noreferrer">
-                <FaFacebook onClick={() => record("Facebook")}
-                            style={{color: '#4267B2', fontSize: '3rem', padding: '.25rem'}}/>
-            </a>
+            <Row>
+                <Col className={"squashToRow  sharingControls"}>
+                    <div className={"verticalFrameCentre"}>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//ourplanetourpeople.com" target="_blank" rel="noreferrer">
+                            <FaFacebook onClick={() => record("Facebook")} style={{color: '#4267B2', fontSize: '3rem', padding: '.25rem'}}/>
+                        </a>
 
-            <a href={`https://twitter.com/intent/tweet?text=${twitterShareText}`}
-               target="_blank" rel="noreferrer">
-                <FaTwitter onClick={() => record("Twitter")}
-                           style={{color: '#1DA1F2', fontSize: '3rem', padding: '.25rem'}}/>
-            </a>
-            {
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//ourplanetourpeople.com"
-               target="_blank"
-               rel="noreferrer" className="auto-hide">
-                <FaLinkedin onClick={() => record("LinkedIn")}
-                            style={{color: '#2D62C1', fontSize: '3rem', padding: '.25rem'}}/>
-            </a>
-            
-            }
+                        <a href={`https://twitter.com/intent/tweet?text=${twitterShareText}`} target="_blank" rel="noreferrer">
+                            <FaTwitter onClick={() => record("Twitter")} style={{color: '#1DA1F2', fontSize: '3rem', padding: '.25rem'}}/>
+                        </a>
 
-            <a href="https://www.instagram.com/" >
-                <FaInstagram onClick={() => record("Instagram")} style={{fontSize: '3rem', padding: '.25rem'}}/>
-            </a>
+                        {
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//ourplanetourpeople.com" target="_blank" rel="noreferrer" className="auto-hide">
+                                <FaLinkedin onClick={() => record("LinkedIn")} style={{color: '#2D62C1', fontSize: '3rem', padding: '.25rem'}}/>
+                            </a>
+                        }
 
-            {/*
-            <a href={`mailto:?subject=${emailSubject}`}>
-                <FaEnvelope onClick={() => record("Email")}
-                            style={{color: '#F5BA48', fontSize: '3rem', padding: '.25rem'}}/>
-            </a>
-*/
-            }
-            <a id="copy-link" href="http://wwww.ourplanetourpeople.com">
-                <FaShareAlt onClick={() => record("Copy")}
-                        style={{color: '#C0C0C0'}}/>
-            </a>
-                </div>
-            </Col>
-            
-        </Row>
-    </>)
+                        <a href="https://www.instagram.com/" >
+                            <FaInstagram onClick={() => record("Instagram")} style={{fontSize: '3rem', padding: '.25rem'}}/>
+                        </a>
 
+                        <a id="copy-link" href="https://wwww.ourplanetourpeople.com">
+                            <FaShareAlt onClick={() => record("Copy")}
+                                    style={{color: '#C0C0C0'}}/>
+                        </a>
+                    </div>
+                </Col>
+            </Row>
+        </>
+    )
 }

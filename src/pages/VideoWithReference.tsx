@@ -3,27 +3,28 @@ import {Col, Row} from "react-bootstrap";
 import {TVideoProps, VideoControl} from "../components/VideoControl";
 import {TReferenceProps, VideoReferenceControl} from "../components/VideoReferenceControl";
 
+import "./VideoWithReference.scss";
+
 type TVideoReference = TReferenceProps & TVideoProps;
 
-export const VideoWithReference = (props: TVideoProps) => {
+export const VideoWithReference = (props: TVideoReference) => {
 
-    const [timeStamp, setTimeStamp] = useState<number>(0);
+    const [timeStamp, setTimeStamp] = useState<number>(props.currentTimeStamp);
 
-    const rowReference = useRef(null);
-    const videoColReference = useRef(null);
-    const sideColReference = useRef(null);
-   
-
-    
+    //if no references just treat as normal control
+    if(!props.references || props.references.length === 0){
+        return <VideoControl {...props} onProgress={setTimeStamp}  />
+    }
     
     return (
-        <Row className={"video-reference-control"} ref={rowReference}>
-            <Col xs={12} md={8} className="video-column" style={{marginLeft:props.leftShift}} ref={videoColReference}>
+        <div className="video-reference-container">
+            <div className="video-container">
                 <VideoControl {...props} onProgress={setTimeStamp}  />
-            </Col>
-            <Col xs={12} md={4} className="reference-column" ref={sideColReference}>
-                <VideoReferenceControl currentTimeStamp={timeStamp} videoColReference={videoColReference} rowReference={rowReference} sideBarColReference={sideColReference} />
-            </Col>
-        </Row>
+            </div>
+
+            <div className="reference-container">
+                <VideoReferenceControl currentTimeStamp={timeStamp} references={props.references} />
+            </div>
+        </div>
     )
 }

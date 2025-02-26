@@ -2,75 +2,11 @@ mux-player {
   --controls-backdrop-color: var( #538177);
   --seek-backward-button: none;
   --seek-forward-button: none;
-
 }
-
 
 /* Prevent .fullscreen styles on mobile */
 @media (min-width: 768px) {
-
   #dato-video-player {
-    margin-right: 5%;
+    aspect-ratio: 16 / 9;
   }
-  /*
-  .fullscreen > .video-overlay
-  {
-    position: fixed !important;
-    top:0;
-    left:0;
-    width: 100vw;
-    height: 100vh;
-
-    background-color: #6a7070;
-    opacity: 80%; 
-   
-
-  }
-  
-  .fullscreen > .video-frame
-  {
-    position: absolute !important;
-
-    width: 102%;
-    height: 102%;
-
-    margin-left: -1%;
-    margin-top: -1%;
-    padding-right: 10px;
-    border: 15px solid var(--secondary); //Adjust border style as needed 
-
-    border-radius: 20px;
-    z-index: 110000;
-    pointer-events: none; // This line prevents clicks on the frame 
-  }
-  .fullscreen {
-    width: 80%;
-
-    position: fixed;
-    top: 15%;
-    left: 10%;
-    z-index: 1000;
-    border-width: 20px;
-    background-color: var(--primary);
-    color: var(--primary);;
-    border-radius: 50px;
-
-  }
-
-*/
-} 
-@media (min-width: 1650px) {
-
-  #dato-video-player
-  {
-    margin-right: 10%;
-  }
-  /*
-  .fullscreen {
-    width: 70% ;
-
-    position: fixed;
-    top: 15%;
-    left: 15%;
-  }*/
 }

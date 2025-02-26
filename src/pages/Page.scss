@@ -1,38 +1,49 @@
 ﻿:root {
   --secondary: #538177;
   --tertiary: #123e50;
+  --white: #fff;
+  --spacingBase: 1rem;
 }
 
 html {
   scroll-padding-top: 8rem;
 }
-h1
-{
+
+h1 {
   line-height: 1;
 }
 
+main .container {
+  padding: 2rem 0;
+}
+
 .frame {
-  position: relative;
+  background-color: var(--tertiary);
   top: 1.25rem;
+
+  &::before,
+  &::after {
+    display: none;
+    content: "";
+    position: absolute;
+  }
 
   &::before {
     transform: skew(3deg, -1deg);
     background-color: var(--secondary);
-    content: "";
     width: 85%;
-    height: 95%;
-    display: block;
-    position: absolute;
+    height: calc(95% - 50px);
     top: 0.5rem;
     left: 1.5rem;
-
+    
     @media (min-width: 540px) {
       width: 95%;
     }
-
+    
     @media (min-width: 768px) {
+      display: block;
       transform: skew(2deg, -1deg);
-      height: 90%;
+      height: calc(90% - 50px);
       width: 85%;
       top: -.5rem;
       left: 2rem;
@@ -42,10 +53,8 @@ h1
   &::after {
     transform: skew(-2deg);
     background-color: var(--tertiary);
-    content: "";
-    position: absolute;
     top: 1rem;
-    height: 90%;
+    height: calc(90% - 50px);
     width: 85%;
     left: 1rem;
 
@@ -55,7 +64,8 @@ h1
 
     @media (min-width: 768px) {
       transform: skew(-4deg);
-      height: 85%;
+      height: calc(85% - 50px);
+      display: block;
       width: 90%;
       top: 0;
       left: 2rem;
@@ -63,13 +73,22 @@ h1
   }
 
   .frame-content {
-    color: white;
+    color: var(--white);
     z-index: 1;
     position: relative;
-    padding: 0rem 2rem 2rem 3rem;
-
+    padding-inline: 1rem;
+    
     @media (min-width: 768px) {
-      padding-bottom: 2rem;
+      padding: 2.5rem 5rem 6rem 5rem;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    background-color: transparent;
+
+    &::before,
+    &::after {
+      display: block;
     }
   }
 }
@@ -83,11 +102,10 @@ img {
   border-radius: 1rem;
 }
 
-
 .heroWithImage {
   position: relative;
   text-align: center;
-  color: white;
+  color: var(--white);
 
   img {
     max-height: 300px;
@@ -102,10 +120,16 @@ img {
   }
 }
 
+.page-navigation {
+  margin-top: var(--spacingBase);
 
-.introText,
-p:first-of-type {
-  @media (min-width: 768px) {
+}
+
+.page-navigation__number {
+  margin-bottom: 0;
+  color: var(--white);
   
+  @media screen and (min-width: 768px) {
+    color: var(--tertiary);
   }
 }

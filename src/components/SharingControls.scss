@@ -1,12 +1,9 @@
-.overlay-share-buttons
-{
-
+.overlay-share-buttons {
   padding-bottom: 5px;
   margin: 0 5px;
   border-bottom: 1px solid #ccc;
 
 }
-
 
 @media (min-width: 970px) {
   .auto-hide {
@@ -14,54 +11,39 @@
     display: none;
   }
 }
+
 .share {
   margin-top: 2rem;
-
- 
+  transition: transform ease-in-out 0.5s;
 
   .video {
     height: 315px;
     width: 70%;
-
-
   }
 
   h2 {
     font-weight: bold;
-
     letter-spacing: .25rem;
     font-size: 1.25rem;
   }
-
-
-  
-  
-  .share-row
-  {
-    
-  }
   
   .voted {
-    /*color: red;*/
     text-decoration: underline red;
     transform: scale(1.1);
   }
 
-  transition: transform ease-in-out 0.5s;
-
-  .share-buttons
-  {
+  .share-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
   }
+
   .social-links {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 1rem;
-
 
     a {
       &:hover,
@@ -73,15 +55,12 @@
   }
 }
 
-#share-heading
-{
+#share-heading {
     font-size: 3.0rem;
     font-weight: bold;
     margin-bottom: 1rem;
 }
-.voted
-{
 
+.voted {
   font-size: 1.4rem !important;
 }
-
