@@ -16,5 +16,6 @@ export interface TStagedFlowProps {
     questions?: TQuestionBlock[];
     donateText?: { value: StructuredTextDocument };
     openingText?: { value: StructuredTextDocument };
+    shareHeading?: string;
 
 }
