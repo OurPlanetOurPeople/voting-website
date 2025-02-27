@@ -97,7 +97,7 @@ const StagedFlow = (props: TStagedFlowProps) => {
                         <Fade in={stage === shareStage} unmountOnExit>
                             <div>
                                 <div>
-                                    <SharingControls voted={true} shareHeading="Share this!" shareButtonText="Share Now" />
+                                    <SharingControls voted={true} shareHeading={props.shareHeading || "..."} shareButtonText="Share Now" />
                                 </div>
                             </div>
                         </Fade>
