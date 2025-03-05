@@ -7,6 +7,8 @@ import {NavLink, useLocation} from "react-router-dom";
 import FlagSelect from "./FlagSelect";
 import {defaultLanguage} from "../languages";
 
+import "./MegaMenu.scss";
+
 export type TDynamicNav = {
     id: string;
     onSelect?: () => {};
