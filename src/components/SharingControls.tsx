@@ -77,7 +77,7 @@ export const SharingControls = ({shareHeading, shareSubHeading, mainQuestionText
     return (
         <>
             <Row className={"verticalFrameCentre justify-content-center"}>
-                <h2>{shareHeading}</h2>
+                <h2 style={{fontWeight: "600"}}>{shareHeading}</h2>
             </Row>
 
             <Row>
